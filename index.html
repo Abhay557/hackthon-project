@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Emission Estimation</title>
+</head>
+<body>
+  <h1>Calculate Emissions</h1>
+  <form id="emissionForm">
+    <div>
+      <label>Activity Type:</label>
+      <input type="text" name="activityType" value="Excavation" />
+    </div>
+    <div>
+      <label>Quantity:</label>
+      <input type="number" name="quantity" value="1000" />
+    </div>
+    <div>
+      <label>Equipment Type:</label>
+      <input type="text" name="equipmentType" value="Diesel Excavator" />
+    </div>
+    <button type="button" onclick="submitForm()">Submit</button>
+  </form>
+
+  <script>
+    function submitForm() {
+      const activities = [
+        {
+          activityType: document.querySelector('[name="activityType"]').value,
+          quantity: document.querySelector('[name="quantity"]').value,
+          equipmentType: document.querySelector('[name="equipmentType"]').value
+        }
+      ];
+
+      fetch('https://symmetrical-space-fishstick-p57q65q7pw7fgxw-5000.app.github.dev/calculate-emissions', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ activities })
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log('Total Emissions:', data.totalEmissions);
+        alert(`Total Emissions: ${data.totalEmissions} kg CO₂`);
+      })
+      .catch(error => console.error('Error:', error));
+    }
+  </script>
+</body>
+</html>
