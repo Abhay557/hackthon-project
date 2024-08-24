@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const path = require('path');
 const app = express();
 
 app.use(cors());
@@ -10,6 +11,10 @@ const emissionFactors = {
   Transportation: { 'Diesel Truck': 3.0 },
   // Add other activities and equipment types as needed
 };
+
+app.get('/', function(req, res) {
+    res.sendFile(path.join(__dirname, 'index.html'));});
+
 
 app.post('/calculate-emissions', (req, res) => {
   const { activities } = req.body;
