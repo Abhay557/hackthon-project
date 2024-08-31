@@ -17,12 +17,15 @@
     /* padding: 11px; */
     margin: 10px;
     font-size: medium;
-
+    }
+    .black {
+    border-radius: 8px;
     }
     </style>
 </head>
 <body>
   <h1>Calculate Emissions</h1>
+  <div class="black">
   <form id="emissionForm">
     <div>
       <label>Activity Type:</label>
@@ -38,6 +41,7 @@
     </div>
     <button type="button" onclick="submitForm()">Submit</button>
   </form>
+</div>
 
   <script>
     function submitForm() {
